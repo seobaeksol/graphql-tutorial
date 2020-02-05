@@ -19,9 +19,12 @@ type BatchPayload {
   count: Long!
 }
 
+scalar DateTime
+
 type Link {
   id: ID!
   description: String!
+  createdAt: DateTime!
   url: String!
   postedBy: User
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
@@ -75,6 +78,8 @@ enum LinkOrderByInput {
   id_DESC
   description_ASC
   description_DESC
+  createdAt_ASC
+  createdAt_DESC
   url_ASC
   url_DESC
 }
@@ -82,6 +87,7 @@ enum LinkOrderByInput {
 type LinkPreviousValues {
   id: ID!
   description: String!
+  createdAt: DateTime!
   url: String!
 }
 
@@ -114,6 +120,14 @@ input LinkScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   url: String
   url_not: String
   url_in: [String!]
@@ -249,6 +263,14 @@ input LinkWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
   url: String
   url_not: String
   url_in: [String!]
