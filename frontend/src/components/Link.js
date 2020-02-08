@@ -7,7 +7,15 @@ import { useMutation } from "urql";
 const VOTE_MUTATION = gql`
   mutation VoteMutation($linkId: ID!) {
     vote(linkId: $linkId) {
-      id
+      link {
+        id
+        votes {
+          id
+          user {
+            id
+          }
+        }
+      }
     }
   }
 `;
@@ -16,6 +24,8 @@ const Link = ({ index, link }) => {
   const isLoggedIn = !!getToken();
 
   const [state, executeMutation] = useMutation(VOTE_MUTATION);
+
+  console.log(state);
 
   const upvote = React.useCallback(() => {
     if (!state.fetching) {

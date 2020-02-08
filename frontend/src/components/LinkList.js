@@ -18,6 +18,7 @@ const FEED_QUERY = gql`
           }
         }
         postedBy {
+          id
           name
         }
       }
